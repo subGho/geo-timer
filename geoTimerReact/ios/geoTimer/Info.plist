@@ -37,6 +37,8 @@
 	</dict>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Location lets us notify you when u are nearing location</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Needed for location all the time</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Location access to set timer</string>
 	<key>UILaunchStoryboardName</key>
