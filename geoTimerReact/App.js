@@ -16,6 +16,10 @@ import {
   Button,
 } from 'react-native';
 
+import { FAB } from 'react-native-elements';
+import { Ionicons } from '@expo/vector-icons';
+// import styles from "./style"
+
 //import all the components we are going to use.
 import Geolocation from '@react-native-community/geolocation';
 
@@ -91,7 +95,7 @@ const App = () => {
       },
       {
         enableHighAccuracy: true,
-        timeout: 10000,
+        timeout: 5000,
         maximumAge: 1000
       },
     );
@@ -131,15 +135,7 @@ const App = () => {
 
   return (
     <SafeAreaView style={{flex: 1}}>
-      <View style={styles.container}>
         <View style={styles.container}>
-          <Image
-            source={{
-              uri:
-                'https://raw.githubusercontent.com/AboutReact/sampleresource/master/location.png',
-            }}
-            style={{width: 100, height: 100}}
-          />
           <Text style={styles.boldText}>
             {locationStatus}
           </Text>
@@ -149,7 +145,7 @@ const App = () => {
               alignItems: 'center',
               marginTop: 16,
             }}>
-            Longitude: {currentLongitude}
+            Latitude: {currentLatitude}
           </Text>
           <Text
             style={{
@@ -157,45 +153,46 @@ const App = () => {
               alignItems: 'center',
               marginTop: 16,
             }}>
-            Latitude: {currentLatitude}
+            Longitude: {currentLongitude}
           </Text>
+          
           <View style={{marginTop: 20}}>
             <Button
               title="Refresh"
               onPress={getOneTimeLocation}
             />
           </View>
+          
         </View>
-        <Text
-          style={{
-            fontSize: 18,
-            textAlign: 'center',
-            color: 'grey'
-          }}>
-          React Native Geolocation
-        </Text>
-        <Text
-          style={{
-            fontSize: 16,
-            textAlign: 'center',
-            color: 'grey'
-          }}>
-          www.aboutreact.com
-        </Text>
-      </View>
+        <View style={styles.fabContainer}>
+            <FAB 
+            // title="Add" 
+            placement="right" 
+            size="large"
+            icon={<Ionicons name="add" size={24} color="black" />}
+            />
+        </View>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  fabContainer: 
+  {
+    flex: 1,
+    justifyContent: 'center',
+  },
+
+  container: 
+  {
     flex: 1,
     backgroundColor: 'white',
     padding: 10,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  boldText: {
+  boldText: 
+  {
     fontSize: 25,
     color: 'red',
     marginVertical: 16,
