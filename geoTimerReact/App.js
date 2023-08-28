@@ -18,10 +18,23 @@ import {
 
 import { FAB } from 'react-native-elements';
 import { Ionicons } from '@expo/vector-icons';
+import { Overlay } from '@rneui/themed';
 // import styles from "./style"
 
 //import all the components we are going to use.
 import Geolocation from '@react-native-community/geolocation';
+
+
+const OverlayComponent = ({ visible, toggleOverlay }) => {
+  return (
+    <Overlay isVisible={visible} onBackdropPress={toggleOverlay}>
+      <Text style={styles.textPrimary}>Set Alarm</Text>
+      <Text style={styles.textSecondary}>
+        Welcome to React Native Elements
+      </Text>
+    </Overlay>
+  );
+};
 
 const App = () => {
   const [
@@ -36,6 +49,7 @@ const App = () => {
     locationStatus,
     setLocationStatus
   ] = useState('');
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const requestLocationPermission = async () => {
@@ -68,6 +82,10 @@ const App = () => {
       Geolocation.clearWatch(watchID);
     };
   }, []);
+
+  const toggleOverlay = () => {
+    setVisible(!visible);
+  };
 
   const getOneTimeLocation = () => {
     setLocationStatus('Getting Location ...');
@@ -133,6 +151,10 @@ const App = () => {
     );
   };
 
+
+  
+  
+
   return (
     <SafeAreaView style={{flex: 1}}>
         <View style={styles.container}>
@@ -166,11 +188,13 @@ const App = () => {
         </View>
         <View style={styles.fabContainer}>
             <FAB 
-            // title="Add" 
+            title="Add" 
             placement="right" 
             size="large"
-            icon={<Ionicons name="add" size={24} color="black" />}
+            // icon={<Ionicons name="add" size={24} color="black" />}
+            onPress={toggleOverlay} // Call toggleOverlay onPress
             />
+            <OverlayComponent visible={visible} toggleOverlay={toggleOverlay} />
         </View>
     </SafeAreaView>
   );
