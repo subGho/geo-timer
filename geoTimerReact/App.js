@@ -90,8 +90,8 @@ const App = () => {
         setLocationStatus(error.message);
       },
       {
-        enableHighAccuracy: false,
-        timeout: 30000,
+        enableHighAccuracy: true,
+        timeout: 10000,
         maximumAge: 1000
       },
     );
@@ -123,7 +123,7 @@ const App = () => {
         setLocationStatus(error.message);
       },
       {
-        enableHighAccuracy: false,
+        enableHighAccuracy: true,
         maximumAge: 1000
       },
     );
