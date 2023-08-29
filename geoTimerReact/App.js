@@ -9,6 +9,7 @@ import {
   SafeAreaView,
   View,
   Text,
+  TextInput,
   StyleSheet,
   Image,
   PermissionsAndroid,
@@ -28,10 +29,19 @@ import Geolocation from '@react-native-community/geolocation';
 const OverlayComponent = ({ visible, toggleOverlay }) => {
   return (
     <Overlay isVisible={visible} onBackdropPress={toggleOverlay}>
-      <Text style={styles.textPrimary}>Set Alarm</Text>
-      <Text style={styles.textSecondary}>
-        Welcome to React Native Elements
+      <Text style={styles.alarmFormText}>New Alarm</Text>
+      <Text style={styles.alarmFormText}>
+        Search for destination:
       </Text>
+      <TextInput 
+      style={styles.textInput}
+      placeholder="Location:" />
+      <Text style={styles.alarmFormText}>
+        Proximity to destination:
+      </Text>
+      <TextInput 
+      style={styles.textInput}
+      placeholder="Distance:" />
     </Overlay>
   );
 };
@@ -113,7 +123,7 @@ const App = () => {
       },
       {
         enableHighAccuracy: true,
-        timeout: 5000,
+        timeout: 20000,
         maximumAge: 1000
       },
     );
@@ -201,12 +211,25 @@ const App = () => {
 };
 
 const styles = StyleSheet.create({
+  alarmFormText:
+  {
+    fontSize: 17,
+    color: 'black',
+    
+  },
+  textInput:
+  {
+    fontSize: 20,
+    color: 'black',
+    borderWidth: 2,
+    borderColor: 'grey',
+    margin: 10,
+  },
   fabContainer: 
   {
     flex: 1,
     justifyContent: 'center',
   },
-
   container: 
   {
     flex: 1,
